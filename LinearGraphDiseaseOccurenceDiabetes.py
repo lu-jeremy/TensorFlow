@@ -4,7 +4,7 @@ import csv
 year = []
 number_of_occurrences_for_each_year = []
 
-with open("C:/Users/bluet/Downloads/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
+with open("C:/Users/bluet/Desktop/TensorFlow/CSVDatasets/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         if row[5] == "Topic":

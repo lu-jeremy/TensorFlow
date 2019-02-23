@@ -13,7 +13,7 @@ number_of_occurrences_15 = []
 name_of_diseases_16 = []
 number_of_occurrences_16 = []
 
-with open("C:/Users/bluet/Downloads/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
+with open("C:/Users/bluet/Desktop/TensorFlow/CSVDatasets/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
     reader = csv.reader(f)
     ##going through the rows with the reader
     for row in reader:

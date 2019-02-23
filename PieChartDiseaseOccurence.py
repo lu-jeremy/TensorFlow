@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
 
-##plt.pie()
-##name_of_diseases and the percentage out of 100
 ##take NASA data set lol
 ##use image data set
 
@@ -10,8 +8,9 @@ number_of_diseases_total = 0
 diseases_names = []
 occurrences = []
 percentages = []
+explode = []
 
-with open("C:/Users/bluet/Downloads/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
+with open("C:/Users/bluet/Desktop/TensorFlow/CSVDatasets/U.S._Chronic_Disease_Indicators__CDI_.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         if row[5] == "Topic":
@@ -26,8 +25,22 @@ with open("C:/Users/bluet/Downloads/U.S._Chronic_Disease_Indicators__CDI_.csv") 
                 occurrences[index] += 1
     for number in occurrences:
         percentages.append(round((number/number_of_diseases_total) * 100, 2))
-        
-    
+    for p in percentages:
+        maximum = max(percentages)
+        if  maximum == p:
+            explode.append(0.1)
+        else:    
+            explode.append(0)
+
+fig1, ax1 = plt.subplots()
+
+ax1.pie(percentages, labels = diseases_names, explode = explode, autopct = "%1.1f%%", shadow = True, startangle = 90)
+
+
+ax1.axis("equal")
+
+plt.show()
+
 ##print(number_of_diseases_total)
 ##print(diseases_names)
 ##print(occurrences)
