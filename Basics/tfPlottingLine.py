@@ -17,16 +17,15 @@ c = tf.constant(2, tf.uint8)
 
 y = tf.add(tf.multiply(m, x), c)
 
-valuesX = []
-valuesY = []
+valuesX = [1, 2, 3, 4, 5, 6]
 
 with tf.Session() as sess:
-    for x2 in range(100):
-        var = sess.run(y, {x:x2})
-        valuesX.append(x)
-        valuesY.append(var)
-    plt.plot(valuesX, valuesY)
-
+##    for x2 in range(100):
+    var = sess.run(y, feed_dict = {x:valuesX})
+    plt.plot(valuesX, var)
     plt.show()
+    
+        
+        
     
         
