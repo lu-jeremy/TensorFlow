@@ -7,10 +7,13 @@ import matplotlib.pyplot as plt
 
 images = []
 _labels = []
+origin_labels = []
 
 for image_path in paths.list_images('test'):
     
     image = image_path.split('/')[-1]
+
+    or_im = cv2.imread(image)
 
     image = cv2.imread(image)
 
@@ -22,6 +25,11 @@ for image_path in paths.list_images('test'):
 
     images.append(image)
 
+    if 'apple' in image_path:
+        origin_labels.append([0, 1])
+    elif 'orange' in image_path:
+        origin_labels.append([1, 0])
+        
 ##print_tensors_in_checkpoint_file('./train_orange_model.ckpt', tensor_name = '',
 ##                                 all_tensors = True)
 
@@ -54,6 +62,16 @@ with tf.Session() as sess:
 
     output = sess.run(prediction, feed_dict = {trainX : images})
 
+    correct_prediction = tf.equal(tf.argmax(prediction, 1),
+                                  tf.argmax(trainY, 1))
+
+    _accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+    accur_value = sess.run(_accuracy, feed_dict = {trainX : images,
+                                                   trainY : origin_labels})
+
+    print(accur_value * 100, '%')                
+
     for row in range(10):
         for column in range(1):
             if output[row][column] > output[row][column + 1]:
@@ -66,12 +84,3 @@ with tf.Session() as sess:
         plt.text(0.5, 0.5, '{}'.format(_labels[row]),
                  horizontalalignment = 'right', verticalalignment = 'top')
     plt.show()
-                   
-
-    
-
-    
-
-
-
-

@@ -1,0 +1,2 @@
+model_checkpoint_path: "neighbor_model.ckpt"
+all_model_checkpoint_paths: "neighbor_model.ckpt"
