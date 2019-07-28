@@ -1,3 +1,3 @@
 # TensorFlow
 
-Includes TensorFlow (of course), Matplotlib, and OpenCV
+TensorFlow projects: Reading hand gestures, reading MNIST handwritten digits, detecting oranges and apples. 
